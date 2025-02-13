@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <img id = her src="./assets/images/her.jpg" alt="her" width="400px">
+    <div id="2"><h2>+</h2></div>
+    <img id = me src="./assets/images/me.jpg" alt="me" width="400px">
+    <div id="1"><h1>Time together: </h1></div>
+    <div id="contador">Contando...</div>
+
+    <script>
+        function calcularTempo() {
+            const dataInicial = new Date("2023-11-19T21:00:00");
+            const agora = new Date();
+
+            let anos = agora.getFullYear() - dataInicial.getFullYear();
+            let meses = agora.getMonth() - dataInicial.getMonth();
+            let dias = agora.getDate() - dataInicial.getDate();
+            let horas = agora.getHours() - dataInicial.getHours();
+            let minutos = agora.getMinutes() - dataInicial.getMinutes();
+            let segundos = agora.getSeconds() - dataInicial.getSeconds();
+
+            if (segundos < 0) {
+                minutos -= 1;
+                segundos += 60;
+            }
+            if (minutos < 0) {
+                horas -= 1;
+                minutos += 60;
+            }
+            if (horas < 0) {
+                dias -= 1;
+                horas += 24;
+            }
+            if (dias < 0) {
+                meses -= 1;
+                dias += new Date(agora.getFullYear(), agora.getMonth(), 0).getDate();
+            }
+            if (meses < 0) {
+                anos -= 1;
+                meses += 12;
+            }
+
+            const semanas = Math.floor((agora - dataInicial) / (1000 * 60 * 60 * 24 * 7));
+
+            document.getElementById("contador").innerHTML = 
+                `${anos} anos, ${meses} meses, ${semanas} semanas, ${dias} dias, 
+                 ${horas} horas, ${minutos} minutos e ${segundos} segundos`;
+        }
+
+        calcularTempo();
+        setInterval(calcularTempo, 1000);
+    </script>
+
+</body>
+</html>
