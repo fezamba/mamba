@@ -50,10 +50,8 @@
                 meses += 12;
             }
 
-            const semanas = Math.floor((agora - dataInicial) / (1000 * 60 * 60 * 24 * 7));
-
             document.getElementById("contador").innerHTML = 
-                `${anos} anos, ${meses} meses, ${semanas} semanas, ${dias} dias, 
+                `${anos} ano, ${meses} meses, ${dias} dias, 
                  ${horas} horas, ${minutos} minutos e ${segundos} segundos`;
         }
 
