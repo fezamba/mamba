@@ -31,7 +31,22 @@
         let anos = agora.getFullYear() - dataInicial.getFullYear();
         let meses = agora.getMonth() - dataInicial.getMonth();
         let dias = agora.getDate() - dataInicial.getDate();
+        let horas = agora.getHours() - dataInicial.getHours();
+        let minutos = agora.getMinutes() - dataInicial.getMinutes();
+        let segundos = agora.getSeconds() - dataInicial.getSeconds();
 
+        if (segundos < 0) {
+            minutos -= 1;
+            segundos += 60;
+        }
+        if (minutos < 0) {
+            horas -= 1;
+            minutos += 60;
+        }
+        if (horas < 0) {
+            dias -= 1;
+            horas += 24;
+        }
         if (dias < 0) {
             meses -= 1;
             let ultimoDiaMesAnterior = new Date(agora.getFullYear(), agora.getMonth(), 0).getDate();
@@ -51,12 +66,14 @@
         }
 
         document.getElementById("contador").innerHTML = 
-            `${anos} year(s), ${meses} month(s), ${semanas} week(s), ${dias} day(s)`;
+            `${anos} year(s), ${meses} month(s), ${semanas} week(s), ${dias} day(s), 
+             ${horas} hour(s), ${minutos} minute(s), ${segundos} second(s)`;
     }
 
     calcularTempo();
     setInterval(calcularTempo, 1000);
 </script>
+
 
 
 </body>
