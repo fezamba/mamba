@@ -9,18 +9,15 @@ body {
     min-height: 100vh;
     margin: 0;
 }
-
 h1{
     font-weight: bolder;
     text-align: center;
 }
-
 h2{
     font-weight: bolder;
     text-align: center;
     font-size: 30px;
 }
-
 #contador {
     font-size: 30px;
     background: #eb98a3;
@@ -30,7 +27,6 @@ h2{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin: 20px auto;
 }
-
 #me, #her {
     border: 4px solid #eb98a3;
     border-radius: 10px;
