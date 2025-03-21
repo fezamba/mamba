@@ -1,6 +1,6 @@
 # Just spreading Love
 
-https://fezamba.github.io/love/
+https://fezamba.github.io/relationship-timer/
 
 ## Used technologies:
 - HTML
