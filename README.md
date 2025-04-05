@@ -2,7 +2,7 @@
 
 https://fezamba.github.io/mamba/
 
-### Used technologies:
+## Used technologies:
 - HTML
 - CSS
 - JavaScript
