@@ -1,113 +1,54 @@
-body {
-    background-color: #121212;
-    color: #f0f0f0;
-    font-family: 'Poppins', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    padding: 20px;
-    box-sizing: border-box;
-}
+function calcularTempo() {
+    const dataInicial = new Date("2023-11-19T21:00:00");
+    const agora = new Date();
+    const diffMs = agora - dataInicial;
 
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    width: 100%;
-    max-width: 900px;
-    animation: fadeIn 1.5s ease-in-out;
-}
+    const segundosTotal = Math.floor(diffMs / 1000);
+    const minutosTotal = Math.floor(segundosTotal / 60);
+    const horasTotal = Math.floor(minutosTotal / 60);
+    const diasTotal = Math.floor(horasTotal / 24);
 
-.couple-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 25px;
-    margin-bottom: 40px;
-}
+    let anos = agora.getFullYear() - dataInicial.getFullYear();
+    let meses = agora.getMonth() - dataInicial.getMonth();
+    let dias = agora.getDate() - dataInicial.getDate();
+    let horas = agora.getHours() - dataInicial.getHours();
+    let minutos = agora.getMinutes() - dataInicial.getMinutes();
+    let segundos = agora.getSeconds() - dataInicial.getSeconds();
 
-#me, #her {
-    width: 250px;
-    height: 250px;
-    object-fit: cover;
-    border: 5px solid #e9a2ad;
-    border-radius: 50%;
-    padding: 5px;
-    background-color: #333;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-#me:hover, #her:hover {
-    transform: scale(1.07);
-    box-shadow: 0 12px 35px rgba(233, 162, 173, 0.4);
-}
-
-.plus-sign {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 4rem;
-    color: #e9a2ad;
-    font-weight: 700;
-}
-
-.time-container h1 {
-    font-family: 'Libre Baskerville', serif;
-    font-weight: 700;
-    font-size: 2.5rem;
-    margin: 0 0 15px 0;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-}
-
-#contador {
-    font-size: 1.5rem;
-    font-weight: 300;
-    background-color: rgba(233, 162, 173, 0.15);
-    color: #f0f0f0;
-    padding: 15px 30px;
-    border-radius: 12px;
-    border: 1px solid #e9a2ad;
-    display: inline-block;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    min-width: 600px;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
+    if (segundos < 0) {
+        minutos -= 1;
+        segundos += 60;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    if (minutos < 0) {
+        horas -= 1;
+        minutos += 60;
     }
-}
-
-@media (max-width: 768px) {
-    .couple-container {
-        flex-direction: column;
-        gap: 20px;
+    if (horas < 0) {
+        dias -= 1;
+        horas += 24;
+    }
+    if (dias < 0) {
+        meses -= 1;
+        let ultimoDiaMesAnterior = new Date(agora.getFullYear(), agora.getMonth(), 0).getDate();
+        dias += ultimoDiaMesAnterior;
+    }
+    if (meses < 0) {
+        anos -= 1;
+        meses += 12;
     }
 
-    .time-container h1 {
-        font-size: 2rem;
+    let semanas = Math.floor(dias / 7);
+    dias = dias % 7;
+
+    if (semanas >= 4) {
+        meses += Math.floor(semanas / 4);
+        semanas = semanas % 4;
     }
 
-    #contador {
-        font-size: 1rem;
-        min-width: 0;
-        width: 90%;
-    }
-
-    #me, #her {
-        width: 200px;
-        height: 200px;
-    }
-
-    .plus-sign {
-        transform: rotate(90deg);
-        margin: -10px 0;
-    }
+    document.getElementById("contador").innerHTML = 
+        `${anos} ano(s), ${meses} mes(es), ${semanas} semana(s), ${dias} dia(s), 
+         ${horas} hora(s), ${minutos} minuto(s), ${segundos} segundo(s)`;
 }
+
+calcularTempo();
+setInterval(calcularTempo, 1000);
