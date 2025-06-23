@@ -71,7 +71,8 @@ body {
     border: 1px solid #e9a2ad;
     display: inline-block;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    min-width: 600px;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 @keyframes fadeIn {
@@ -98,7 +99,6 @@ body {
 
     #contador {
         font-size: 1.3rem;
-        min-width: 0;
         width: 95%;
         padding: 18px 25px;
     }
