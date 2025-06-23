@@ -1,76 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Love</title>
+    <title>Nós ❤️</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 </head>
 <body>
-    <img id = her src="./her.jpg" alt="her" width="400px">
-    <div id="2"><h2>+</h2></div>
-    <img id = me src="./me.jpg" alt="me" width="400px">
-    <div id="1"><h1>Time together: </h1></div>
-    <div id="contador">Contando...</div>
 
-    <script>
-    function calcularTempo() {
-        const dataInicial = new Date("2023-11-19T21:00:00");
-        const agora = new Date();
-        const diffMs = agora - dataInicial;
+    <main class="container">
+        <div class="couple-container">
+            <img id="her" src="./her.jpg" alt="Ela">
+            <span class="plus-sign">+</span>
+            <img id="me" src="./me.jpg" alt="Eu">
+        </div>
 
-        const segundosTotal = Math.floor(diffMs / 1000);
-        const minutosTotal = Math.floor(segundosTotal / 60);
-        const horasTotal = Math.floor(minutosTotal / 60);
-        const diasTotal = Math.floor(horasTotal / 24);
+        <div class="time-container">
+            <h1>Nosso Tempo Juntos</h1>
+            <div id="contador">Calculando...</div>
+        </div>
+    </main>
 
-        let anos = agora.getFullYear() - dataInicial.getFullYear();
-        let meses = agora.getMonth() - dataInicial.getMonth();
-        let dias = agora.getDate() - dataInicial.getDate();
-        let horas = agora.getHours() - dataInicial.getHours();
-        let minutos = agora.getMinutes() - dataInicial.getMinutes();
-        let segundos = agora.getSeconds() - dataInicial.getSeconds();
-
-        if (segundos < 0) {
-            minutos -= 1;
-            segundos += 60;
-        }
-        if (minutos < 0) {
-            horas -= 1;
-            minutos += 60;
-        }
-        if (horas < 0) {
-            dias -= 1;
-            horas += 24;
-        }
-        if (dias < 0) {
-            meses -= 1;
-            let ultimoDiaMesAnterior = new Date(agora.getFullYear(), agora.getMonth(), 0).getDate();
-            dias += ultimoDiaMesAnterior;
-        }
-        if (meses < 0) {
-            anos -= 1;
-            meses += 12;
-        }
-
-        let semanas = Math.floor(dias / 7);
-        dias = dias % 7;
-
-        if (semanas >= 4) {
-            meses += Math.floor(semanas / 4);
-            semanas = semanas % 4;
-        }
-
-        document.getElementById("contador").innerHTML = 
-            `${anos} year(s), ${meses} month(s), ${semanas} week(s), ${dias} day(s), 
-             ${horas} hour(s), ${minutos} minute(s), ${segundos} second(s)`;
-    }
-
-    calcularTempo();
-    setInterval(calcularTempo, 1000);
-</script>
+    <script src="script.js"></script>
 </body>
 </html>
